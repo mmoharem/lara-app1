@@ -1,0 +1,39 @@
+1- creat pages folder under views
+
+2- create controller then set the route to go the controller function then return view
+
+3- we gonna us artisan to creat the controller
+ - $php artisan make:controller pagesController //it creat controller at app/http/controllers
+ - creat index.blade.php under views/pages then and html code
+ - goto env and change the app name to your app name
+
+4- creating layouts under views. then add layout with name (app.blade.php)
+ - then using @yield('content')
+ - @extends('layouts.app')
+   @section('content')
+      your markup
+   @endsection
+
+5- passing values into blade templates
+   public function index(){
+        $title = 'Welcome To Laravel';
+        return view('pages.index', compact('title'));
+    }
+
+    then addind {{$title}} to h1
+
+ - other way to do
+   public function services() {
+        $title = 'Services';
+        return view('pages.services')->with('title', $title);
+    }
+
+    then addind {{$title}} to h1
+
+    - other way using array
+    public function about() {
+        $data = array(
+            'title' => 'About Us'
+        );
+        return view('pages.about')->with($data);
+    }
