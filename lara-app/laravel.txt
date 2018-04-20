@@ -37,3 +37,21 @@
         );
         return view('pages.about')->with($data);
     }
+
+6- $php artisan make:controller PostsController
+ - $php artisan make:model Post -m // -m for for database migration
+    
+    goto the created posts-table database
+    add the followind two fields
+    $table->string('title');
+            $table->mediumText('body')
+
+    go to .env and add your database setting
+    to prevent error from string in db migration add the followinc code in AppServiceProvider.php
+      use Illuminate\Support\Facades\schema;
+      and at boot function add this
+      (Schema::defaultStringLength(191);)
+    
+ - $ php artisan migrate  //to make your db tables
+
+ 7- using tanker to insert data into database
