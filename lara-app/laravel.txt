@@ -54,4 +54,88 @@
     
  - $ php artisan migrate  //to make your db tables
 
- 7- using tanker to insert data into database
+ 7- using tinker to insert data into database
+  - $php artisan tinker
+    
+        >>> App\Post::count()
+        => 0
+        >>> $post = new App\Post();
+        => App\Post {#687}
+        >>> $post->title = 'Post One';
+        => "Post One"
+        >>> $post->body = 'This Is The Post body';
+        => "This Is The Post body"
+        >>> $post->save();
+        => true
+
+
+///////////////////////////////
+//.. To add crud functionality to our app we need bunch of
+
+//bunch of functions in our Post controller
+a- index  //the listing of all the post
+b- craete //whitch represent the form
+c- store  //to submitt the creat func to for submitting data to model to database
+d- edit // to editing the form
+e- updtae
+f- show
+g- destroy
+
+1- delete the post controller and recreat it again with  --resource
+ - $ php artisan make:controller PostController --resource
+ - this will creat the controller with all the resources automaticaly
+
+2- use the followig comand to list all the routes used
+ - $php artisan route:list
+
+3- creating routs for all the functions controller
+   to not creat all the routs manually we can use the followig route to add them automaticaly
+   Route::resource('posts', 'PostController');
+
+4- Goto Model // we have already a ton of functionaly by the extends of model
+ - you can sdd some records like..
+    //check laravel documentation for all model records
+    //table Name
+    protected $table = 'posts'; //pasts is the defaul name
+    //Primary Key
+    public $primaryKey = 'id'; //default is 'id'
+    //Timestamps
+    public $timestamps = true; //default
+
+6- the posts page is mapping to the index function in the controller due to the routs resouce routes
+ - goto index function on PostsController and add
+ -return view('posts.index');
+ -goto resources views and creat (index.blade.php) under creating posts folder
+ - at the (index.blade.php) extend the layout.app then include ('conten) section as follows
+ 
+        @extends('layouts.app')
+
+        @section('content')
+            <h1>Posts</h1>
+        @endsection 
+
+7- to fetch our (posts) to our (controller) we bring our (model)
+ - the (model) has a namespace off (app) and class of (Post)
+   so to bringed in we add
+   (use App/Post;) under (use Illuminate\....). then we can use any of the model function by using illequen by addin the followig code to theindex func
+   (Post::all();) // to add all model data //then put it a variable then pass  it to view as
+   $posts = Post::all();
+   return view('post.index')->with('posts', $posts);
+
+ - then go views posts index and loop thought it all
+
+        @extends('layouts.app')
+
+            @section('content')
+                <h1>Posts</h1>
+                @if(count($posts) > 1)
+                    @foreach($posts as $post)
+                        <div class="well">
+                            <h3>{{$post->title}}</h3>
+                        </div>
+                    @endforeach
+                @else
+                <p>No Posts found</p>
+                @endif
+            @endsection
+ 
