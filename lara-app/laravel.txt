@@ -145,4 +145,4 @@ g- destroy
     
    return Post::find($id); // Post is the Post model
 
-- then to creat post view
+- then to creat show.blade.php under view/posts then add your code and markup

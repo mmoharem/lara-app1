@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
-
+// use DB; //for not using elquer just use normal sql
 class PostController extends Controller
 {
     /**
@@ -14,7 +14,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all(); 
+        // $posts = Post::all();
+        // $posts = Post::orderBy('title', 'acc')->take(1)->get(); // use take() to limmit the numb of viewing posts
+        //return Post::where('title', 'Post Two')->get();
+        //$posts = DB::select('SELECT * FROM posts'); //for not using elquer just use normal sql
+        $posts = Post::orderBy('title', 'acc')->paginate(1);
         return view('posts.index')->with('posts', $posts);
     }
 
