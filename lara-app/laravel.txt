@@ -146,3 +146,39 @@ g- destroy
    return Post::find($id); // Post is the Post model
 
 - then to creat show.blade.php under view/posts then add your code and markup
+
+8- craeting forms and database
+
+ a - adding the form&html package 
+   - goto laravelcollective and follow the installation and setting guide,.
+   - after installation and setup
+   - goto create.blade.php and add the following code under the h1
+     {!! Form::open(['url' => 'foo/bar']) !!}
+
+    {!! Form::close() !!}
+    
+    then continue markup
+ b - vilidation: goto PostController and edite the store() function
+     $this->validate($request, [
+            'title' => 'required',
+            'body'  => 'required'
+        ]);
+
+**- to create messages(notes) goto views inc and creat messages.blade.php
+    then add messages code 
+    then iclude it in the (layouts)
+
+ - continue finishing post store function
+
+
+ - install laravel ckeditor by going to
+   https://github.com/UniSharp/laravel-ckeditor
+   $composer require uninsharp/laravel-ckeditor
+   ..
+   ..
+9- creat and edite post. goto show.blade.php and a the following link under the small
+    <hr>
+    <a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit</a>
+
+ - goto PostController the edit() function
+
