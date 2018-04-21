@@ -131,11 +131,18 @@ g- destroy
                 @if(count($posts) > 1)
                     @foreach($posts as $post)
                         <div class="well">
-                            <h3>{{$post->title}}</h3>
+                        <h3><a href="/posts/{{$post->id}}">{{$post->title}}</a></h3>
+                        <small>Written on {{$post->created_at}}</small>
                         </div>
                     @endforeach
                 @else
                 <p>No Posts found</p>
                 @endif
             @endsection
- 
+
+
+ - then to fetch each post from database got PostsController and add the followig code under funct show($id)
+    
+   return Post::find($id); // Post is the Post model
+
+- then to creat post view
