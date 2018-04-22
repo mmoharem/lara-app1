@@ -13,4 +13,6 @@
     @else
     <p>No Posts found</p>
     @endif
+    <hr>
+    <a href="/posts/create" class="btn btn-primary">Create Post</a>
 @endsection
