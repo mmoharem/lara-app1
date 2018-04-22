@@ -180,5 +180,11 @@ g- destroy
     <hr>
     <a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit</a>
 
- - goto PostController the edit() function
+ - goto PostController the edit() function then add the following code
+        $post = Post::find(id)
+        return view('posts.edit')->with('post', $post);
 
+ - creat edite.blade.php under views/posts
+   then past the markup from creat.blade.php
+
+ - goto update() function at PostController then add the code
