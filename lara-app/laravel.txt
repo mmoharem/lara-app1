@@ -188,3 +188,5 @@ g- destroy
    then past the markup from creat.blade.php
 
  - goto update() function at PostController then add the code
+
+ - then goto destroy() function at PostController to add code
